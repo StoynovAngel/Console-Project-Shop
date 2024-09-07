@@ -38,5 +38,10 @@ public class UserDAO {
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, Security.encryption(password));
     }
 
+    public String getMyUserRole(String name, String password){
+        String sql = "SELECT users.user_role FROM public.users WHERE users.name = ? AND users.password = ?";
+        User user = ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, Security.encryption(password));
+        return user != null ? user.getUserRole() : null;
+    }
 
 }

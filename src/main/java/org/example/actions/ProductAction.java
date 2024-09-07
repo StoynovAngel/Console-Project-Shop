@@ -6,8 +6,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ProductAction {
-    private final static ProductDAO productDAO = new ProductDAO();
-    public static void addNewProduct(Scanner in){
+    private final ProductDAO productDAO = new ProductDAO();
+    public void addNewProduct(Scanner in){
 
         in.nextLine();
         System.out.print("Brand: ");
@@ -30,7 +30,7 @@ public class ProductAction {
 
     }
 
-    public static void allProducts(){
+    public void allProducts(){
         System.out.println(productDAO.getAllProducts());
     }
 }

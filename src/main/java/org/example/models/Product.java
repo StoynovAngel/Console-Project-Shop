@@ -8,7 +8,7 @@ public class Product {
     private double finalPrice;
     private int discount, quantity;
 
-    // Constructor
+
     public Product(int id, String brand, String name, double originalPrice, int discount, double finalPrice, int quantity) {
         this.id = id;
         this.brand = brand;

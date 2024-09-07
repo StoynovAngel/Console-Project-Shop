@@ -1,27 +1,21 @@
 package org.example.models;
 
-import java.io.Serializable;
+import org.example.handlers.ClientHandler;
 
-public class User  implements Serializable {
+import java.io.Serializable;
+import java.util.Scanner;
+
+public class User implements Serializable {
     private int id;
     private String name;
     private String password;
     private String userRole;
 
-    public User(int id, String name, String password, String userRole) {
-        this.id = id;
+    public User(String name, String password) {
         this.name = name;
         this.password = password;
-        this.userRole = userRole;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
