@@ -1,5 +1,7 @@
 package org.example.dao;
 
+import org.example.Roles.Admin;
+import org.example.Roles.Client;
 import org.example.connection.DatabaseConnection;
 import org.example.handlers.MapResultSets;
 import org.example.handlers.ResultSetHandler;
@@ -28,7 +30,7 @@ public class UserDAO {
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, id);
     }
 
-    public List<User> getAllUserBySpecificRole(String userRole){
+    public List<User> getAllUsersBySpecificRole(String userRole){
         String sql = "SELECT * FROM public.users WHERE users.user_role = ?";
         return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, userRole);
     }
@@ -36,12 +38,6 @@ public class UserDAO {
     public User getLoggedUser(String name, String password){
         String sql = "SELECT * FROM public.users WHERE users.name = ? AND users.password = ?";
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, Security.encryption(password));
-    }
-
-    public String getMyUserRole(String name, String password){
-        String sql = "SELECT users.user_role FROM public.users WHERE users.name = ? AND users.password = ?";
-        User user = ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, Security.encryption(password));
-        return user != null ? user.getUserRole() : null;
     }
 
 }

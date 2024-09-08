@@ -49,14 +49,14 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", name='" + name + '\'' +
-                ", originalPrice=" + originalPrice +
-                ", finalPrice=" + finalPrice +
-                ", discount=" + discount +
-                ", quantity=" + quantity +
-                '}';
+        return "\n[User Details:]\n" +
+                "----------------------------\n" +
+                "Brand              : " + brand + "\n" +
+                "Name               : " + name + "\n" +
+                "Original price     : " + originalPrice + "$" + "\n" +
+                "Current price      : " + finalPrice + "$" + "\n" +
+                "Discount           : " + discount + "\n" +
+                "Quantity           : " + quantity + "\n" +
+                "----------------------------\n";
     }
 }

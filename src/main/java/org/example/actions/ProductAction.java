@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class ProductAction {
     private final ProductDAO productDAO = new ProductDAO();
     public void addNewProduct(Scanner in){
-
-        in.nextLine();
         System.out.print("Brand: ");
         String brand = in.nextLine();
 

@@ -1,21 +1,21 @@
 package org.example.models;
 
-import org.example.handlers.ClientHandler;
+import org.example.handlers.ActionHandler;
 
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class User implements Serializable {
-    private int id;
+public abstract class User{
     private String name;
     private String password;
     private String userRole;
 
-    public User(String name, String password) {
+    public User(String name, String password, String userRole) {
         this.name = name;
         this.password = password;
+        this.userRole = userRole;
     }
-
+    public abstract void showMenu(ActionHandler actionHandler, Scanner in);
 
     public String getName() {
         return name;

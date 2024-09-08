@@ -1,5 +1,7 @@
 package org.example.handlers;
 
+import org.example.Roles.Admin;
+import org.example.Roles.Client;
 import org.example.models.Order;
 import org.example.models.OrderProduct;
 import org.example.models.Product;
@@ -10,10 +12,16 @@ import java.sql.SQLException;
 
 public class MapResultSets {
     public static User mapResultSetToUser(ResultSet resultSet) throws SQLException {
-        return new User(
-                resultSet.getString("name"),
-                resultSet.getString("password")
-        );
+        String username = resultSet.getString("name");
+        String password = resultSet.getString("password");
+        String user_role = resultSet.getString("user_role");
+
+        if(user_role.equalsIgnoreCase("admin")){
+            return new Admin(username, password, user_role);
+        }
+        else{
+            return new Client(username, password, user_role);
+        }
     }
 
     public static Product mapResultSetToProduct(ResultSet resultSet) throws SQLException {

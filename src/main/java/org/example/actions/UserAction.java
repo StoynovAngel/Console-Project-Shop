@@ -1,6 +1,5 @@
 package org.example.actions;
 
-import org.example.Roles.Client;
 import org.example.dao.UserDAO;
 import org.example.models.User;
 import org.example.security.Security;
@@ -36,15 +35,14 @@ public class UserAction {
         userDAO.addUser(name, encodedPassword);
     }
 
-    public void login(Scanner in){
+    public User login(Scanner in){
         in.nextLine();
         System.out.print("Name: ");
         String name = in.nextLine();
         System.out.print("Password: ");
         String password = in.nextLine();
 
-        User user = userDAO.getLoggedUser(name, password);
-        System.out.println(user);
+        return userDAO.getLoggedUser(name, password);
     }
 
     public void register(Scanner in){
@@ -53,21 +51,10 @@ public class UserAction {
         String name = in.nextLine();
         System.out.print("What is your password: ");
         String password = in.nextLine();
-        userDAO.addUser(name, password);
+        userDAO.addUser(name, Security.encryption(password));
     }
 
     public void allUsers(){
         System.out.println(userDAO.getAllUsers());
-    }
-
-    public void role(Scanner in){
-        in.nextLine();
-        System.out.print("Name: ");
-        String name = in.nextLine();
-        System.out.print("Password: ");
-        String password = in.nextLine();
-
-        String myUserRole =userDAO.getMyUserRole(name, password);
-        System.out.println(myUserRole);
     }
 }
