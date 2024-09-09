@@ -57,4 +57,26 @@ public class UserAction {
     public void allUsers(){
         System.out.println(userDAO.getAllUsers());
     }
+
+    public void usersByRole(Scanner in){
+        System.out.print("Role: ");
+        String role = in.nextLine();
+
+        System.out.println(userDAO.getAllUsersBySpecificRole(role));
+
+    }
+
+    public void deleteUser(Scanner in){
+        System.out.println("Are you sure you want to delete a user? (yes/no)");
+        String answer = in.nextLine();
+        switch (answer.toLowerCase()){
+            case "yes" -> {
+                System.out.print("ID: ");
+                int id = in.nextInt();
+                userDAO.deleteUserByID(id);
+            }
+            case "no" -> System.out.println("Goodbye.");
+            default -> System.out.println("Invalid choice");
+        }
+    }
 }

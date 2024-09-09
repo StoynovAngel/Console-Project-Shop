@@ -28,4 +28,13 @@ public class ProductDAO {
         return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToProduct);
     }
 
+    public List<Product> getProductByPriceRange(int low, int high){
+        String sql = "SELECT * FROM public.products WHERE products.final_price BETWEEN ? AND ?";
+        return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToProduct, low, high);
+    }
+
+    public Product getProductByName(String name){
+        String sql = "SELECT * FROM public.products WHERE products.name = ?";
+        return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToProduct, name);
+    }
 }

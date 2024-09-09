@@ -40,4 +40,10 @@ public class UserDAO {
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, Security.encryption(password));
     }
 
+    public void deleteUserByID(int id){
+        String sql = "DELETE FROM public.users WHERE users.id = ?";
+        UpdateHandler.executeUpdate(sql, conn, id);
+        System.out.println("User deleted successfully.");
+    }
+
 }
