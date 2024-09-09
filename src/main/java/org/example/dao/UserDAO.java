@@ -30,6 +30,11 @@ public class UserDAO {
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, id);
     }
 
+    public User getUserId(String name, String password){
+        String sql = "SELECT * FROM public.users WHERE users.name = ? AND users.password = ?";
+        return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, name, password);
+    }
+
     public List<User> getAllUsersBySpecificRole(String userRole){
         String sql = "SELECT * FROM public.users WHERE users.user_role = ?";
         return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToUser, userRole);

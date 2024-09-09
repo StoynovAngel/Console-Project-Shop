@@ -12,15 +12,16 @@ import java.sql.SQLException;
 
 public class MapResultSets {
     public static User mapResultSetToUser(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
         String username = resultSet.getString("name");
         String password = resultSet.getString("password");
         String user_role = resultSet.getString("user_role");
 
         if(user_role.equalsIgnoreCase("admin")){
-            return new Admin(username, password, user_role);
+            return new Admin(id, username, password, user_role);
         }
         else{
-            return new Client(username, password, user_role);
+            return new Client(id, username, password, user_role);
         }
     }
 

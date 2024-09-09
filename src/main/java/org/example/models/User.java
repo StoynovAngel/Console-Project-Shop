@@ -6,16 +6,22 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public abstract class User{
+    private int id;
     private String name;
     private String password;
     private String userRole;
 
-    public User(String name, String password, String userRole) {
+    public User(int id, String name, String password, String userRole) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.userRole = userRole;
     }
     public abstract void showMenu(ActionHandler actionHandler, Scanner in);
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

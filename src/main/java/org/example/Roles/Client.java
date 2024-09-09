@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Client extends User {
 
-    public Client(String name, String password, String userRole) {
-        super(name, password, userRole);
+    public Client(int id, String name, String password, String userRole) {
+        super(id, name, password, userRole);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class Client extends User {
 
             switch (choice) {
                 case 1 -> actionHandler.productAction.allProducts();
-//                case 2 -> clientHandler.orderAction.viewUserOrders(in);
-                case 3 -> actionHandler.orderAction.newOrder(in);
+                case 2 -> actionHandler.orderAction.viewUserOrders(getId());
+                case 3 -> actionHandler.orderAction.newOrder(getId(), in);
                 case 4 -> actionHandler.productAction.productByName(in);
                 case 5 -> actionHandler.productAction.productPriceRange(in);
                 case 0 -> System.out.println("Logging out...");

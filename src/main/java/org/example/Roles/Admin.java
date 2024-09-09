@@ -6,8 +6,8 @@ import org.example.models.User;
 import java.util.Scanner;
 
 public class Admin extends User {
-    public Admin(String name, String password, String userRole) {
-        super(name, password, userRole);
+    public Admin(int id, String name, String password, String userRole) {
+        super(id, name, password, userRole);
     }
 
     @Override

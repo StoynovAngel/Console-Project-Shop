@@ -51,6 +51,7 @@ public class Product {
     public String toString() {
         return "\n[User Details:]\n" +
                 "----------------------------\n" +
+                "Id                 : " + id + "\n" +
                 "Brand              : " + brand + "\n" +
                 "Name               : " + name + "\n" +
                 "Original price     : " + originalPrice + "$" + "\n" +

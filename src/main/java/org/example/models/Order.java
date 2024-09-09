@@ -34,4 +34,15 @@ public class Order {
 
     public Timestamp getOrderDate() { return orderDate; }
     public void setOrderDate(Timestamp orderDate) { this.orderDate = orderDate; }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", value=" + value +
+                ", status='" + status + '\'' +
+                ", address='" + address + '\'' +
+                ", orderDate=" + orderDate +
+                '}';
+    }
 }
