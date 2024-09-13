@@ -8,6 +8,7 @@ import org.example.models.Order;
 import org.example.models.OrderProduct;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -102,5 +103,20 @@ public class OrderAction {
                 System.out.println(order);
             }
         }
+    }
+
+    public void changeStatus(Scanner in){
+        System.out.print("Order id: ");
+        int orderID = in.nextInt();
+        in.nextLine();
+        System.out.print("Status: ");
+        String status = in.nextLine().toUpperCase();
+        String[] possibleStatus = {"CANCELLED", "COMPLETED", "PENDING"};
+        for(String s: possibleStatus){
+            if(s.equals(status)){
+                orderDAO.updateStatus(status, orderID);
+            }
+        }
+
     }
 }

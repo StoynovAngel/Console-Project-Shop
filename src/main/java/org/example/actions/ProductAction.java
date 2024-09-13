@@ -56,4 +56,12 @@ public class ProductAction {
 
         System.out.println(productDAO.getProductByName(name));
     }
+
+    public void deleteById(Scanner in){
+        System.out.print("Product id to be deleted: ");
+        int id = in.nextInt();
+
+        productDAO.deleteProduct(id);
+        System.out.println("Product deleted.");
+    }
 }

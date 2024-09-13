@@ -25,6 +25,8 @@ public class Admin extends User {
             System.out.println("7. Display a specific product by id");
             System.out.println("8. Display all users by role");
             System.out.println("9. Delete user by id");
+            System.out.println("10. Change order status");
+            System.out.println("11.  Delete product by id.");
             System.out.println("0. Logout");
             System.out.print("Enter your choice: ");
             choice = in.nextInt();
@@ -40,6 +42,8 @@ public class Admin extends User {
                 case 7 -> actionHandler.productAction.gedProductById(in);
                 case 8 -> actionHandler.userAction.usersByRole(in);
                 case 9 -> actionHandler.userAction.deleteUser(in);
+                case 10 -> actionHandler.orderAction.changeStatus(in);
+                case 11 -> actionHandler.productAction.deleteById(in);
                 case 0 -> System.out.println("Logging out...");
                 default -> System.out.println("Invalid choice. Please try again.");
             }

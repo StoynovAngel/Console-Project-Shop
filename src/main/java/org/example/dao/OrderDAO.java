@@ -39,4 +39,9 @@ public class OrderDAO {
         return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToOrder);
     }
 
+    public void updateStatus(String status, int orderID){
+        String sql = "UPDATE public.orders SET status = ? WHERE id = ?";
+        UpdateHandler.executeUpdate(sql, conn, status, orderID);
+    }
+
 }

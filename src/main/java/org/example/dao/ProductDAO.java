@@ -37,4 +37,9 @@ public class ProductDAO {
         String sql = "SELECT * FROM public.products WHERE products.name = ?";
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToProduct, name);
     }
+
+    public void deleteProduct(int id){
+        String sql = "DELETE FROM public.products WHERE id = ?";
+        UpdateHandler.executeUpdate(sql, conn, id);
+    }
 }
