@@ -2,10 +2,7 @@ package org.example.handlers;
 
 import org.example.Roles.Admin;
 import org.example.Roles.Client;
-import org.example.models.Order;
-import org.example.models.OrderProduct;
-import org.example.models.Product;
-import org.example.models.User;
+import org.example.models.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,5 +51,26 @@ public class MapResultSets {
                 resultSet.getDouble("purchase_price"),
                 resultSet.getInt("quantity")
         );
+    }
+
+    public static CombinedOrderProducts mapResultSetToCombinedOrderProduct(ResultSet resultSet) throws SQLException{
+        OrderProduct orderProduct = new OrderProduct(
+                resultSet.getInt("order_id"),
+                resultSet.getInt("product_id"),
+                resultSet.getDouble("purchase_price"),
+                resultSet.getInt("quantity")
+        );
+
+        Product product = new Product(
+                resultSet.getInt("product_id"),
+                resultSet.getString("brand"),
+                resultSet.getString("name"),
+                resultSet.getDouble("original_price"),
+                resultSet.getInt("discount"),
+                resultSet.getDouble("final_price"),
+                resultSet.getInt("quantity")
+        );
+
+        return new CombinedOrderProducts(orderProduct, product);
     }
 }

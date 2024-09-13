@@ -22,6 +22,7 @@ public class Client extends User {
             System.out.println("3. Place a new order");
             System.out.println("4. View specific product.");
             System.out.println("5. Product by price range.");
+            System.out.println("6. Get order details.");
             System.out.println("0. Logout");
             System.out.print("Enter your choice: ");
 
@@ -34,6 +35,7 @@ public class Client extends User {
                 case 3 -> actionHandler.orderAction.newOrder(getId(), in);
                 case 4 -> actionHandler.productAction.productByName(in);
                 case 5 -> actionHandler.productAction.productPriceRange(in);
+                case 6 -> actionHandler.orderAction.viewOrderDetails(in, getId());
                 case 0 -> System.out.println("Logging out...");
                 default -> System.out.println("Invalid choice. Please try again.");
             }

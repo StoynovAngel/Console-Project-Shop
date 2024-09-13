@@ -32,7 +32,7 @@ public class Admin extends User {
 
             switch (choice) {
                 case 1 -> actionHandler.userAction.allUsers();
-//                case 2 -> clientHandler.orderAction.viewAllOrders();
+                case 2 -> actionHandler.orderAction.viewAllOrders();
                 case 3 -> actionHandler.productAction.addNewProduct(in);
                 case 4 -> actionHandler.productAction.allProducts();
                 case 5 -> actionHandler.userAction.addNewUser(in);

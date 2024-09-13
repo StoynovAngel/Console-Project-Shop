@@ -3,6 +3,7 @@ package org.example.actions;
 import org.example.dao.OrderDAO;
 import org.example.dao.OrderProductDAO;
 import org.example.dao.ProductDAO;
+import org.example.models.CombinedOrderProducts;
 import org.example.models.Order;
 import org.example.models.OrderProduct;
 
@@ -26,8 +27,12 @@ public class OrderAction {
         }
     }
 
-    public void viewOrderDetails(int orderId) {
+    public void viewOrderDetails(Scanner in, int userID) {
+        viewUserOrders(userID);
+        System.out.print("Enter order id: ");
+        int orderId = in.nextInt();
         Order order = orderDAO.getOrderByID(orderId);
+
         if (order == null) {
             System.out.println("Order not found.");
             return;
@@ -37,16 +42,20 @@ public class OrderAction {
         System.out.println(order);
 
         OrderProductDAO orderProductDAO = new OrderProductDAO();
-        List<OrderProduct> orderProducts = orderProductDAO.getOrderProductsByOrderId(orderId);
+        List<CombinedOrderProducts> combinedOrderProducts = orderProductDAO.getCombinedOrderProductsByOrderId(orderId);
 
-        if (orderProducts.isEmpty()) {
+        if (combinedOrderProducts.isEmpty()) {
             System.out.println("No products in this order.");
         } else {
-            for (OrderProduct op : orderProducts) {
-                System.out.println(op);
+            System.out.println("Products in this order:");
+            for (CombinedOrderProducts cop : combinedOrderProducts) {
+                System.out.println(cop);
             }
         }
     }
+
+
+
     public void newOrder(int userId, Scanner in) {
         System.out.println("Address to receive the delivery: ");
         String address = in.nextLine();
@@ -82,5 +91,16 @@ public class OrderAction {
         }
 
         System.out.println("Order created and completed!");
+    }
+
+    public void viewAllOrders() {
+        List<Order> orders = orderDAO.getAllOrders();
+        if (orders.isEmpty()) {
+            System.out.println("No orders.");
+        } else {
+            for (Order order : orders) {
+                System.out.println(order);
+            }
+        }
     }
 }

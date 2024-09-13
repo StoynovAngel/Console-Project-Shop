@@ -4,6 +4,7 @@ import org.example.connection.DatabaseConnection;
 import org.example.handlers.MapResultSets;
 import org.example.handlers.ResultSetHandler;
 import org.example.handlers.UpdateHandler;
+import org.example.models.CombinedOrderProducts;
 import org.example.models.Order;
 import org.example.models.OrderProduct;
 import org.example.models.Product;
@@ -43,13 +44,20 @@ public class OrderProductDAO {
         return ResultSetHandler.handleSingleReturnSet(sql, conn, MapResultSets::mapResultSetToProduct, product_id);
     }
 
-    public List<OrderProduct> getOrderProductsByOrderId(int orderId) {
-        String sql = "SELECT * FROM public.order_products WHERE order_id = ?";
-        return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToOrderProduct, orderId);
+    public List<CombinedOrderProducts> getCombinedOrderProductsByOrderId(int orderId) {
+        String sql = "SELECT op.order_id, op.product_id, op.purchase_price, op.quantity, " +
+                "p.name, p.brand, p.original_price, p.discount, p.final_price, p.quantity as stock_quantity " +
+                "FROM public.order_products op " +
+                "JOIN public.products p ON op.product_id = p.id " +
+                "WHERE op.order_id = ?";
+        return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToCombinedOrderProduct, orderId);
     }
 
     public void updateProductQuantity(int productId, int quantity) {
         String sql = "UPDATE public.products SET quantity = quantity - ? WHERE id = ?";
         UpdateHandler.executeUpdate(sql, conn, quantity, productId);
     }
+
+
+
 }

@@ -31,9 +31,12 @@ public class OrderDAO {
     public void updateOrderValue(int orderId) throws SQLException {
         String sql = "UPDATE public.orders SET value = (SELECT SUM(op.purchase_price * op.quantity) " +
                 "FROM public.order_products op WHERE op.order_id = ?) WHERE id = ?";
-
-        // Pass orderId twice, once for the subquery and once for the main query
         UpdateHandler.executeUpdate(sql, conn, orderId, orderId);
+    }
+
+    public List<Order> getAllOrders(){
+        String sql = "SELECT * FROM public.orders";
+        return ResultSetHandler.handleMultipleReturnSet(sql, conn, MapResultSets::mapResultSetToOrder);
     }
 
 }

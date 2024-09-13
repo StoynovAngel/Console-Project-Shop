@@ -26,4 +26,14 @@ public class OrderProduct {
 
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "orderId=" + orderId +
+                ", productId=" + productId +
+                ", purchasePrice=" + purchasePrice +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
